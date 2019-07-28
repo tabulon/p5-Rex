@@ -246,7 +246,7 @@ sub create_group {
     if ( exists $data->{gid} ) {
       eval {
         my @content = split( /\n/, cat("/etc/group") );
-        my $gid = $data->{gid};
+        my $gid     = $data->{gid};
         for (@content) {
           s/^$group:([^:]+):(\d+):/$group:$1:$gid:/;
         }

@@ -573,7 +573,7 @@ sub auth {
   if ( !$group ) {
     Rex::Logger::debug("No group $entity found, looking for a task.");
     if ( ref($entity) eq "Regexp" ) {
-      my @tasks = Rex::TaskList->create()->get_tasks;
+      my @tasks          = Rex::TaskList->create()->get_tasks;
       my @selected_tasks = grep { m/$entity/ } @tasks;
       for my $t (@selected_tasks) {
         auth( $_d, $t, %data );
@@ -1500,7 +1500,7 @@ sub profiler {
   my $c_profiler = Rex::get_current_connection()->{"profiler"};
   unless ($c_profiler) {
     $c_profiler = $profiler || Rex::Profiler->new;
-    $profiler = $c_profiler;
+    $profiler   = $c_profiler;
   }
 
   return $c_profiler;
