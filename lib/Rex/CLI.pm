@@ -485,9 +485,10 @@ sub _list_tasks {
   Rex::Logger::debug("Listing Tasks");
 
   my @tasks;
-  if($opts{'a'}) {
+  if ( $opts{'a'} ) {
     @tasks = sort Rex::TaskList->create()->get_all_tasks(qr/.*/);
-  } else {
+  }
+  else {
     @tasks = Rex::TaskList->create()->get_tasks;
   }
 
