@@ -134,15 +134,13 @@ task test6 => sub {
 };
 
 
-TODO: {
-    local $TODO = "Fix #1508: needs() should propogate current task parameters/args";
-
-    my $task_list = Rex::TaskList->create;
-    my $run_list  = Rex::RunList->instance;
-    $run_list->parse_opts(qw/test test2 test3 test5 test6/);
+{
+  my $task_list = Rex::TaskList->create;
+  my $run_list  = Rex::RunList->instance;
+  $run_list->parse_opts(qw/test test2 test3 test5 test6/);
 
 
-    for my $task ( $run_list->tasks ) {
+  for my $task ( $run_list->tasks ) {
     my $name=$task->name;
     my %prms=("${name}_greet" => "Hello ${name}");
     my @args=("${name}.arg.0", "${name}.arg.1", "${name}.arg.2");
@@ -152,7 +150,7 @@ TODO: {
     my @summary = $task_list->get_summary;
     is_deeply $summary[-1]->{exit_code}, 0, $task->name;
     $run_list->increment_current_index;
-    }
+  }
 }
 
 
